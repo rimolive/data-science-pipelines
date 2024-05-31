@@ -6,8 +6,6 @@ on:
       - completed
 env:
   QUAY_ORG: opendatahub
-  QUAY_ID: ${{ secrets.QUAY_ROBOT_USERNAME }}
-  QUAY_TOKEN: ${{ secrets.QUAY_ROBOT_TOKEN }}
   GH_USER_EMAIL: 140449482+dsp-developers@users.noreply.github.com
   GH_USER_NAME: dsp-developers
 jobs:
@@ -74,11 +72,12 @@ jobs:
       - name: Run Commit Checker
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN_PROJECT_EDIT }}
+          GH_TOKEN: ${{ github.token }}
         continue-on-error: true
         run: |
           git config user.email "${{ env.GH_USER_EMAIL }}"
           git config user.name "${{ env.GH_USER_NAME }}"
+          gh pr checkout ${{ env.PR_NUMBER }}
 
           cat <<"EOF" >> /tmp/body-file.txt
           ### Commit Checker results:
