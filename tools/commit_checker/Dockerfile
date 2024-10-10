@@ -17,6 +17,9 @@ RUN microdnf install git && \
 WORKDIR /src/app-root
 ENTRYPOINT ["commitchecker"]
 
+# Dummy
+# Dummy 2
+
 VOLUME ["/src/app-root"]
 
 LABEL name="Commit Checker tool" \
