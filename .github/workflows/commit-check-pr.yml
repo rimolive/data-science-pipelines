@@ -72,7 +72,7 @@ jobs:
       - name: Run Commit Checker
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN_PROJECT_EDIT }}
+          GH_TOKEN: ${{ github.token }}
         continue-on-error: true
         run: |
           git config user.email "${{ env.GH_USER_EMAIL }}"
